@@ -4,3 +4,9 @@ use anchor_lang::prelude::*;
 pub struct RuleCreated {
     pub reward: u64,
 }
+
+#[event]
+pub struct CompensationCreated {
+    pub contributor: Pubkey,
+    pub amount: u64,
+}
