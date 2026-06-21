@@ -4,7 +4,7 @@ use crate::constants::*;
 use crate::events::*;
 use crate::state::*;
 
-pub fn handler(ctx: Context<SubmitContribution>) -> Result<()> {
+pub fn submit_handler(ctx: Context<SubmitContribution>) -> Result<()> {
     let contribution = &mut ctx.accounts.contribution;
 
     let compensation = &mut ctx.accounts.compensation;

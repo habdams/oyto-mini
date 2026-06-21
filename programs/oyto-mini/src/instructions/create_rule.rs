@@ -5,7 +5,7 @@ use crate::error::*;
 use crate::events::*;
 use crate::state::*;
 
-pub fn handler(ctx: Context<CreateRule>, event_type: EventType, reward: u64) -> Result<()> {
+pub fn create_handler(ctx: Context<CreateRule>, event_type: EventType, reward: u64) -> Result<()> {
     require!(reward > 0, PayrollError::InvalidReward);
 
     let rule = &mut ctx.accounts.rule;

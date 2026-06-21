@@ -18,10 +18,10 @@ pub mod oyto_mini {
     use super::*;
 
     pub fn create_rule(ctx: Context<CreateRule>, event_type: EventType, reward: u64) -> Result<()> {
-        instructions::create_rule::handler(ctx, event_type, reward)
+        instructions::create_rule::create_handler(ctx, event_type, reward)
     }
 
     pub fn submit_contribution(ctx: Context<SubmitContribution>) -> Result<()> {
-        instructions::submit_contribution::handler(ctx)
+        instructions::submit_contribution::submit_handler(ctx)
     }
 }
