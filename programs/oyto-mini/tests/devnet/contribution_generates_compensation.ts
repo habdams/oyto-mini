@@ -27,7 +27,7 @@ describe("compensation generation", () => {
       .rpc();
 
     await program.methods
-      .submitContribution()
+      .submitContribution(new anchor.BN(5))
       .accounts({
         contributor: provider.wallet.publicKey,
         rule: rule.publicKey,

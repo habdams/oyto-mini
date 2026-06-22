@@ -6,10 +6,10 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-oyto_mini = "Ack3dg9utXRbtMY9LDsNWuZRT7VUoKUwKrsgoyjSXirM"
+oyto_mini = "AiD45wxFcNuh1QC1EAU5i3dxbyVGTyNnZUdiHPbh8Fvk"
 
 [provider]
-cluster = "localnet"
+cluster = "https://solana-devnet.g.alchemy.com/v2/cXTcihI0uHbLOrY9DDgl4"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

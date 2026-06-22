@@ -28,7 +28,7 @@ describe("anti gaming", () => {
 
     try {
       await program.methods
-        .submitContribution()
+        .submitContribution(new anchor.BN(5))
         .accounts({
           contributor: provider.wallet.publicKey,
           rule: rule.publicKey,

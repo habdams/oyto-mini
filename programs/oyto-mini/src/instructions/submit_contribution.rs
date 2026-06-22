@@ -1,22 +1,21 @@
 use anchor_lang::prelude::*;
 
 use crate::constants::*;
+use crate::error::*;
 use crate::events::*;
 use crate::state::*;
 
-pub fn submit_handler(ctx: Context<SubmitContribution>) -> Result<()> {
-    let contribution = &mut ctx.accounts.contribution;
+pub fn submit_handler(ctx: Context<SubmitContribution>, pr_size: u64) -> Result<()> {
+    require!(pr_size >= 20, PayrollError::ContributionTooSmall);
 
+    let contribution = &mut ctx.accounts.contribution;
     let compensation = &mut ctx.accounts.compensation;
 
     let rule = &ctx.accounts.rule;
 
     contribution.contributor = ctx.accounts.contributor.key();
-
     contribution.event_type = rule.event_type.clone();
-
     compensation.contributor = ctx.accounts.contributor.key();
-
     compensation.amount = rule.reward;
 
     emit!(CompensationCreated {

@@ -4,4 +4,7 @@ use anchor_lang::prelude::*;
 pub enum PayrollError {
     #[msg("Reward must be greater than zero")]
     InvalidReward,
+
+    #[msg("Contribution too small")]
+    ContributionTooSmall,
 }
