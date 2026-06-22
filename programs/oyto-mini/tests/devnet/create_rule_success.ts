@@ -14,7 +14,7 @@ describe("create rule", () => {
     setTimeout(() => {}, 60000);
     const rule = Keypair.generate();
 
-    await program.methods
+    const tx = await program.methods
       .createRule({ mergedPr: {} }, new anchor.BN(10))
       .accounts({
         rule: rule.publicKey,
@@ -22,6 +22,8 @@ describe("create rule", () => {
       })
       .signers([rule])
       .rpc();
+
+    console.log("\x1b[32mCreate Rule Tx: \x1b0m", tx);
 
     const account = await program.account.ruleAccount.fetch(rule.publicKey);
 

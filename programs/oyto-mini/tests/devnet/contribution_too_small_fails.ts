@@ -12,12 +12,11 @@ describe("anti gaming", () => {
 
   it("rejects tiny contributions", async () => {
     const rule = Keypair.generate();
-
     const contribution = Keypair.generate();
-
     const compensation = Keypair.generate();
+    let error: any = null;
 
-    await program.methods
+    const createTx = await program.methods
       .createRule({ mergedPr: {} }, new anchor.BN(10))
       .accounts({
         rule: rule.publicKey,
@@ -26,8 +25,10 @@ describe("anti gaming", () => {
       .signers([rule])
       .rpc();
 
+    console.log("\x1b[32mCreate Rule Tx: \x1b0m", createTx);
+
     try {
-      await program.methods
+      const sumbitTx = await program.methods
         .submitContribution(new anchor.BN(5))
         .accounts({
           contributor: provider.wallet.publicKey,
@@ -38,9 +39,16 @@ describe("anti gaming", () => {
         .signers([contribution, compensation])
         .rpc();
 
+      console.log("Submit Contribution Tx: ", sumbitTx);
+
       expect.fail("expected error");
     } catch (err) {
-      expect(err).to.be.undefined;
+      error = err;
     }
+    console.log(
+      "\x1b[33mNo Submission Transaction will take place since contibution is below expectation\x1b[0m",
+    );
+
+    expect(error.error.errorCode.code).to.be.equal("ContributionTooSmall");
   });
 });

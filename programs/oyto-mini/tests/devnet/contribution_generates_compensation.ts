@@ -17,7 +17,7 @@ describe("compensation generation", () => {
 
     const compensation = Keypair.generate();
 
-    await program.methods
+    const createTx = await program.methods
       .createRule({ mergedPr: {} }, new anchor.BN(10))
       .accounts({
         rule: rule.publicKey,
@@ -26,8 +26,11 @@ describe("compensation generation", () => {
       .signers([rule])
       .rpc();
 
-    await program.methods
-      .submitContribution(new anchor.BN(5))
+    console.log("\x1b[32mCreate Rule Tx: \x1b0m", createTx);
+    console.log("---");
+
+    const submitTx = await program.methods
+      .submitContribution(new anchor.BN(50))
       .accounts({
         contributor: provider.wallet.publicKey,
         rule: rule.publicKey,
@@ -36,6 +39,8 @@ describe("compensation generation", () => {
       })
       .signers([contribution, compensation])
       .rpc();
+
+    console.log("\x1b[32mSubmit Contribution Tx: \x1b0m", submitTx);
 
     const account = await program.account.compensationAccount.fetch(
       compensation.publicKey,
