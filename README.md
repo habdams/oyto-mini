@@ -111,9 +111,15 @@ Run tests:
 npm run test:devnet
 ```
 
-#### Test output
+#### Test output(Devnet)
 
-![test](screenshots/test-3)
+Program ID: `AiD45wxFcNuh1QC1EAU5i3dxbyVGTyNnZUdiHPbh8Fvk`
+
+-> [View on Solana Explorer](https://explorer.solana.com/address/AiD45wxFcNuh1QC1EAU5i3dxbyVGTyNnZUdiHPbh8Fvk?cluster=devnet)
+
+##### Devnet Test Passing
+
+![Devnet tests Passing](screenshots/test-3)
 
 ### Current Scope
 
